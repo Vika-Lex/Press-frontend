@@ -6,7 +6,7 @@ import {API_URL} from "@/src/constants";
 import {getAllMenus} from "@/lib/menu/getAllMenus";
 import {deleteMenuItemAction} from "@/src/actions/menu/deleteMenuItemAction";
 
-
+// TODO: Надо реализовать удаление без обновления
 interface Props {
     className?: string,
     item: NavItemInterface,
