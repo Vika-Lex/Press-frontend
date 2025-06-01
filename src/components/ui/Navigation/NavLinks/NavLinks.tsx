@@ -14,7 +14,7 @@ const NavLinks = ({menu}: Props) => {
         <nav className={style.nav}>
             <ul className={style.list}>
                 {menu?.map(link => (
-                    <li >
+                    <li key={link.id}>
                         <Link href={link.href}>{link.label}</Link>
                     </li>
                 ))}
