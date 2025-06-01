@@ -1,0 +1,31 @@
+.benefitsSection {
+  background-color: #F5F5F5;
+  margin-top: 50px;
+}
+
+.title {
+  color: #55555A;
+  font-size: 24px;
+  line-height: normal;
+  padding-top: 23px;
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.text {
+  color: #55555A;
+  width: 300px;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 25px;
+}

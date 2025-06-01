@@ -1,0 +1,49 @@
+.sidebar {
+  background-color: #2f3236;
+  width: auto;
+  transition: width 1s linear;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &.collapsed {
+    width: 50px;
+    transition: width 1s linear;
+    .content {
+      margin: 0 auto;
+    }
+    .link {
+
+      text-align: center;
+      p {
+        display: none;
+      };
+    }
+  }
+
+}
+.group {
+
+}
+
+.link {
+display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  padding: 10px 20px;
+
+}
+
+.content {
+
+}
+
+.collapse {
+
+}
+
+.collapsed {
+
+}
