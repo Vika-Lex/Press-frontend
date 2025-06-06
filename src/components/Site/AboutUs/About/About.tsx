@@ -2,6 +2,7 @@ import Container from '@/src/components/ui/Container/Container';
 import style from './About.module.scss'
 import Image from "next/image";
 
+
 interface Props {
     className?: string
 }
@@ -54,7 +55,8 @@ const About = ({}: Props) => {
                         </div>
                     </div>
                     <div className={style.containerImg}>
-                        <img
+                        <Image width={672}
+                               height={450}
                             src='/images/signatureGuarantee.png'
                             alt=''
                         />
@@ -63,7 +65,8 @@ const About = ({}: Props) => {
 
                 <li className={style.item}>
                     <div className={style.containerImg}>
-                        <img
+                        <Image width={672}
+                               height={450}
                             src='/images/productionСomplex.png'
                             alt=''
                         />
