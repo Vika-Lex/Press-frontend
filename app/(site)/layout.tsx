@@ -8,6 +8,7 @@ import Logo from "@/src/components/ui/Header/Logo";
 import {getFullMenus} from "@/lib/menu/getFullMenu";
 import Footer from "@/src/components/ui/Footer/Footer";
 import HeaderActions from "@/src/components/Site/ui/HeaderActions/HeaderActions";
+import MenuList from "@/src/components/Site/ui/Menu/MenuList";
 
 
 export default async function MainLayout({
@@ -22,7 +23,9 @@ export default async function MainLayout({
         <Header>
             <Container className='flex items-center'>
                 <Logo/>
-                <NavLinks menu={menu?.items}/>
+                {menu && (
+                    <MenuList menu={menu.items}/>
+                )}
                 <HeaderActions/>
             </Container>
         </Header>
