@@ -1,0 +1,26 @@
+.nav {
+  margin-left: 60px;
+  flex: 1 1 auto;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  border-left: 1px dashed grey;
+  padding: 3px 5px;
+  &:last-child {
+    border-right: 1px dashed grey;
+  }
+
+}
+
+.link {
+  padding: 30px 10px;
+  color: #BEBEC3;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}
