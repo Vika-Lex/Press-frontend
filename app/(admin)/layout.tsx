@@ -1,11 +1,9 @@
 import React from "react";
 import "@/app/globals.css";
+import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
+import {AppSidebar} from "@/src/components/Admin/Sidebar/AppSidebar";
 import Header from "@/src/components/ui/Header/Header";
-import SidebarNav from "@/src/components/Admin/Sidebar/SidebarNav";
 import Logo from "@/src/components/ui/Header/Logo";
-
-
-
 
 export default function AdminLayout({
                                         children,
@@ -13,21 +11,21 @@ export default function AdminLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru">
+
+        <html lang='en'>
         <body>
-        <Header>
-            <Logo/>
-        </Header>
+        <main>
 
-        <main className='flex '>
+            <SidebarProvider>
+                <AppSidebar/>
 
-            <SidebarNav/>
-                <div className='w-full'>
-                    {children}
-                </div>
+
+                <SidebarTrigger/>
+                {children}
+
+            </SidebarProvider>
         </main>
         </body>
-
         </html>
     );
 }
