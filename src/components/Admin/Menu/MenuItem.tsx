@@ -6,11 +6,11 @@ import {API_URL} from "@/src/constants";
 import {getAllMenus} from "@/lib/menu/getAllMenus";
 import {deleteMenuItemAction} from "@/src/actions/menu/deleteMenuItemAction";
 
-
+// TODO: Надо реализовать удаление без обновления
 interface Props {
     className?: string,
     item: NavItemInterface,
-    setLinks: React.Dispatch<React.SetStateAction<Response|null>>,
+    setLinks: React.Dispatch<React.SetStateAction<Response | null>>,
     page: number,
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
     setModalContent: React.Dispatch<React.SetStateAction<NavItemInterface>>
@@ -26,13 +26,13 @@ interface Response {
 const MenuItem = ({item, setLinks, page, setIsModalOpen, setModalContent}: Props) => {
     const [isIncrementActive, setIsIncrementActive] = useState<boolean>(false)
     const [isDecrementActive, setIsDecrementActive] = useState<boolean>(false)
-    function getDate(dateString:string):string {
+
+    function getDate(dateString: string): string {
         const date = new Date(dateString)
         return date.toLocaleDateString('ru-RU')
     }
 
     const handleIncrementOrder = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log(item);
         setIsIncrementActive(true);
         fetch(`${API_URL}/menu/increment`, {
             method: 'POST',
@@ -49,8 +49,7 @@ const MenuItem = ({item, setLinks, page, setIsModalOpen, setModalContent}: Props
     }
 
     const handleDecrementOrder = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log(item);
-        setIsDecrementActive(true)
+        tIsDecrementActive(true)
         fetch(`${API_URL}/menu/decrement`, {
             method: 'POST',
             body: JSON.stringify(item),
@@ -71,7 +70,21 @@ const MenuItem = ({item, setLinks, page, setIsModalOpen, setModalContent}: Props
     }
 
     const handleClickDeleteItem = () => {
-        deleteMenuItemAction(item)
+        const status = confirm('Ви впевнені, що хочете видалити пункт меню?');
+
+        if (status) {
+            deleteMenuItemAction(item).then(res => {
+                setLinks(prevState => {
+                    const links = prevState?.items.filter(link => link.id !== item.id) ?? [];
+                    if (prevState) {
+                        return {...prevState, items: links}
+                    }
+                    return null
+
+                })
+            })
+        }
+
     }
 
     return (
@@ -96,18 +109,26 @@ const MenuItem = ({item, setLinks, page, setIsModalOpen, setModalContent}: Props
                     <MdOutlineRemoveRedEye/>
                 </button>
 
-                <button className='text-orange-400' onClick={handleClickEditItem}>
+                <button className='text-orange-400'
+                        onClick={handleClickEditItem}
+                >
                     <MdOutlineModeEdit/>
                 </button>
-                <button onClick={handleClickDeleteItem} className='text-red-700'>
+                <button onClick={handleClickDeleteItem}
+                        className='text-red-700'
+                >
                     <MdOutlineDelete/>
                 </button>
-                <button onClick={handleIncrementOrder} disabled={isIncrementActive}>
-                    <FaArrowAltCircleDown className={isIncrementActive?'text-slate-500':'text-slate-900'} />
+                <button onClick={handleIncrementOrder}
+                        disabled={isIncrementActive}
+                >
+                    <FaArrowAltCircleDown className={isIncrementActive ? 'text-slate-500' : 'text-slate-900'}/>
 
                 </button>
-                <button onClick={handleDecrementOrder} disabled={isDecrementActive}>
-                    <FaArrowAltCircleUp className={isDecrementActive?'text-slate-500':'text-slate-900'}/>
+                <button onClick={handleDecrementOrder}
+                        disabled={isDecrementActive}
+                >
+                    <FaArrowAltCircleUp className={isDecrementActive ? 'text-slate-500' : 'text-slate-900'}/>
                 </button>
             </td>
         </tr>

@@ -47,7 +47,7 @@ const MenuList = ({}: Props) => {
     const [page, setPage] = useState<number>(1)
     const router = useRouter();
     useEffect(() => {
-        console.log('---------')
+        console.log('---23423------')
         getAllMenus(page).then(res => {
 
             console.log(res)
