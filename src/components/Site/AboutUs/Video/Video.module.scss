@@ -1,7 +1,11 @@
 .img {
+  text-align: center;
 
   iframe {
-    width: 100%;
-    min-height: 500px;
+    display: inline-block;
+    width: 900px;
+    min-height: 350px;
+    margin-top: 90px;
+    margin-bottom: 90px;
   }
 }
