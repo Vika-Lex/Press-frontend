@@ -7,7 +7,8 @@ interface Props {
 
 const Advantages = ({}: Props) => {
     return (
-        <section className={style.sectionAdvantages}>
+        <section className={style.sectionAdvantages}
+                 style={{ backgroundImage: "url('/images/achievements.jpg')" }}>
            <Container>
                <h2 className={style.title}>Наші досягнення</h2>
                <ul className={style.advantagesList}>
