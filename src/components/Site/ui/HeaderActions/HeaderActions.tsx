@@ -6,10 +6,10 @@ interface Props {
 const HeaderActions = ({}: Props) => {
     return (
         <>
-            <div className='languages'>
-                <button>UA</button>
-                <button>EN</button>
-            </div>
+            {/*<div className='languages'>*/}
+            {/*    <button>UA</button>*/}
+            {/*    <button>EN</button>*/}
+            {/*</div>*/}
             <button className='burger'>
                <span></span>
             </button>
