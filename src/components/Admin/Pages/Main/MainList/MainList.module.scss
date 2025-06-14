@@ -1,0 +1,58 @@
+.item {
+  background: #F5F5F5;
+  border-radius: 5px;
+}
+
+.descriptionCard {
+  background-color: #E5E5E8;
+  border-radius: 5px;
+  @apply w-1/2;
+}
+
+.title {
+  color: #55555A;
+  font-size: 20px;
+  line-height: normal;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: normal;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.volume {
+  font-size: 24px;
+  line-height: normal;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.price {
+  color: #53C05E;
+  font-family: Play,sans-serif;
+  font-size: 32px;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.button {
+  border-radius: 5px;
+  background: #55555A;
+  color: #E5E5E8;
+  font-size: 16px;
+  line-height: normal;
+  padding: 9px 22px;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 25px;
+
+}
+
