@@ -12,8 +12,10 @@ export interface HeroProps {
 }
 
 const Hero = ({}: HeroProps) => {
- const [title, setTitle] = useState<string>("Гідравлічні\n" +
+ const [title, setTitle] = useState<string>("Гідравлічні \n" +
      "             преси для макулатури та твердих побутових відходів")
+ const [titleButton, setTitleButton] = useState<string>("Замовити дзвінок")
+
     return (
         <>
          <Container>
@@ -47,12 +49,30 @@ const Hero = ({}: HeroProps) => {
              <p className={`${style.description} mt-7`}>Контроль якості – один з головних принципів
               виробництва
               вантажопідйомного обладнання на нашому підприємстві</p>
-             <button className={`${style.button} w-[350px] h-[62px] mt-10  font-bold uppercase flex items-center justify-center gap-3`}
-                     type='button'
-             >
-              {/*<PhoneIconGrey/>*/}
-              Замовити дзвінок
-             </button>
+
+
+             <div className='flex flex-col '>
+              <button className={`${style.button} w-[350px] h-[62px] mt-10  font-bold uppercase flex items-center justify-center gap-3`}
+                      type='button'
+              >
+               {titleButton}
+              </button>
+              <Popover>
+               <PopoverTrigger asChild>
+                <Button className='w-[150px] mt-2 ml-[100px]'
+                        variant='outline'
+                >Редактировать</Button>
+               </PopoverTrigger>
+               <PopoverContent>
+                <div className="">
+                 <Label htmlFor="maxWidth">Max. width</Label>
+                 <Textarea value={titleButton}
+                           onChange={(e) => setTitleButton(e.target.value)}
+                 />
+                </div>
+               </PopoverContent>
+              </Popover>
+             </div>
             </div>
            </div>
           </div>
