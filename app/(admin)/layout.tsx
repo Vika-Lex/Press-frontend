@@ -2,8 +2,10 @@ import React from "react";
 import "@/app/globals.css";
 import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
 import {AppSidebar} from "@/src/components/Admin/Sidebar/AppSidebar";
-import Header from "@/src/components/ui/Header/Header";
-import Logo from "@/src/components/ui/Header/Logo";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import QueryProvider from "@/providers/QueryProvider";
+
+const queryClient = new QueryClient()
 
 export default function AdminLayout({
                                         children,
@@ -16,14 +18,17 @@ export default function AdminLayout({
         <body>
         <main>
 
+
             <SidebarProvider>
-                <AppSidebar/>
+                <QueryProvider>
+                    <AppSidebar/>
+                    <SidebarTrigger/>
+                    {children}
 
-
-                <SidebarTrigger/>
-                {children}
+                </QueryProvider>
 
             </SidebarProvider>
+
         </main>
         </body>
         </html>

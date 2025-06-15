@@ -9,11 +9,15 @@ import {useState} from "react";
 import {Textarea} from "@/components/ui/textarea"
 
 export interface HeroProps {
+ page: {
+  title: string,
+  description: string,
+  button: string
+ }
 }
 
-const Hero = ({}: HeroProps) => {
- const [title, setTitle] = useState<string>("Гідравлічні \n" +
-     "             преси для макулатури та твердих побутових відходів")
+const Hero = ({page}: HeroProps) => {
+ const [title, setTitle] = useState<string>(page.title)
  const [titleButton, setTitleButton] = useState<string>("Замовити дзвінок")
 
     return (
@@ -21,7 +25,7 @@ const Hero = ({}: HeroProps) => {
          <Container>
           <div className='mt-10'>
            <div className='flex flex-col items-center'>
-            <h1 className={`${style.titleHero} text-center font-bold uppercase `}>{title}</h1>
+            <div dangerouslySetInnerHTML={{__html:title}}/>
             <Popover>
              <PopoverTrigger asChild>
               <Button className='w-25' variant='outline'>Редактировать</Button>
