@@ -14,7 +14,7 @@ const Page = ({}: Props) => {
             title: '<h1 class="font-semibold text-2xl text-slate-800">Гідравлічні преси для макулатури та твердих побутових відходів</h1>',
             description: '<p>\n' +
                 'З 2009 року наша компанія є одним з найбільших виробників вантажопідйомного обладнання на ринку України. Ми розробляємо, виробляємо, встановлюємо, модернізуємо і обслуговуємо вантажопідйомне обладнання.</p><br><br><p>Контроль якості – один з головних принципів виробництва вантажопідйомного обладнання на нашому підприємстві</p>',
-            button: '<button class="text-red-500">Замовити дзвінок</button>'
+            button: '<button class="w-[350px] h-[62px] mt-10 font-bold uppercase flex items-center justify-center bg-[#55555A] rounded text-[#E5E5E8] text-[18px] leading-normal">Замовити дзвінок</button>'
         },
         products: {},
         benefits: {},

@@ -18,7 +18,7 @@ export interface HeroProps {
 
 const Hero = ({page}: HeroProps) => {
  const [title, setTitle] = useState<string>(page.title)
- const [titleButton, setTitleButton] = useState<string>("Замовити дзвінок")
+ const [titleButton, setTitleButton] = useState<string>(page.button)
 
     return (
         <>
@@ -56,11 +56,13 @@ const Hero = ({page}: HeroProps) => {
 
 
              <div className='flex flex-col '>
-              <button className={`${style.button} w-[350px] h-[62px] mt-10  font-bold uppercase flex items-center justify-center gap-3`}
-                      type='button'
-              >
-               {titleButton}
-              </button>
+              <div dangerouslySetInnerHTML={{__html:page.button}}/>
+
+              {/*<button className={`${style.button} w-[350px] h-[62px] mt-10  font-bold uppercase flex items-center justify-center gap-3`}*/}
+              {/*        type='button'*/}
+              {/*>*/}
+              {/* {titleButton}*/}
+              {/*</button>*/}
               <Popover>
                <PopoverTrigger asChild>
                 <Button className='w-[150px] mt-2 ml-[100px]'
