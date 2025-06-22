@@ -4,85 +4,101 @@ import style from "@/src/components/Admin/Pages/Main/Hero/Hero.module.scss";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
-import {Input} from "@/components/ui/input";
 import {useState} from "react";
-import {Textarea} from "@/components/ui/textarea"
+import {Textarea} from "@/components/ui/textarea";
+import Editor from "@/src/components/ui/Editor/Editor";
+import Modal from "@/src/components/ui/Modal/Modal";
 
 export interface HeroProps {
- page: {
-  title: string,
-  description: string,
-  button: string
- }
+    page: {
+        title: string,
+        description: string,
+        button: string
+    }
 }
 
 const Hero = ({page}: HeroProps) => {
- const [title, setTitle] = useState<string>(page.title)
- const [titleButton, setTitleButton] = useState<string>(page.button)
+    const [title, setTitle] = useState<string>(page.title)
+    const [titleButton, setTitleButton] = useState<string>(page.button);
+    const [description, setDescription] = useState<string>(page.description)
+
+    const [onModal, setOnModal] = useState<boolean>(false);
+    const [currentContent, setCurrentContent] = useState<string>('')
+
+
+
+    const onOpenModal = () => {
+        setOnModal(!onModal)
+    }
+
 
     return (
         <>
-         <Container>
-          <div className='mt-10'>
-           <div className='flex flex-col items-center'>
-            <div dangerouslySetInnerHTML={{__html:title}}/>
-            <Popover>
-             <PopoverTrigger asChild>
-              <Button className='w-25' variant='outline'>Редактировать</Button>
-             </PopoverTrigger>
-             <PopoverContent>
-              <div className="">
-               <Label htmlFor="maxWidth">Max. width</Label>
-               <Textarea value={title} onChange={(e) => setTitle(e.target.value)} />
-              </div>
-             </PopoverContent>
-            </Popover>
-           </div>
-           <div className='flex mt-10 '>
-            <div className='w-1/2'>
-             <img className='w-[420px] h-[270px] mx-auto'
-                  src='/images/mainImage.png'
-                  alt=''
-             />
-            </div>
-            <div className='flex flex-col w-1/2'>
-             <p className={style.description}>З 2009 року наша компанія є одним з найбільших виробників
-              вантажопідйомного обладнання на ринку України. Ми розробляємо,
-              виробляємо, встановлюємо, модернізуємо і обслуговуємо
-              вантажопідйомне обладнання.</p>
-             <p className={`${style.description} mt-7`}>Контроль якості – один з головних принципів
-              виробництва
-              вантажопідйомного обладнання на нашому підприємстві</p>
+            <Container>
+                <div className='mt-10 '>
+                    <div className='flex flex-col items-center'>
+                        <h1 className=''>Проверка таилвинд</h1>
+                        <div dangerouslySetInnerHTML={{__html: title}}/>
+                        <Button className='w-25'
+                                onClick={() => {
+                                    setCurrentContent(title)
+                                    onOpenModal()
+                                }}
+                                variant='outline'
+                        >Редактировать</Button>
+
+                        {onModal && (
+                            <Modal onOpenModal={onOpenModal}>
+                                <Editor setState={setTitle} initialValue={currentContent} plugins={['code']} onOpenModal={onOpenModal}/>
+                            </Modal>
+                        )}
+                    </div>
+                    <div className='flex mt-10 '>
+                        <div className='w-1/2'>
+                            <img className='w-[420px] h-[270px] mx-auto'
+                                 src='/images/mainImage.png'
+                                 alt=''
+                            />
+                        </div>
+                        <div className='flex flex-col w-1/2'>
+                            <Button className='w-25'
+                                    onClick={()=> {
+                                        setCurrentContent(description);
+                                        onOpenModal()
+                                    }}
+                                    variant='outline'
+                            >Редактировать</Button>
+                            {onModal && (
+                                <Modal onOpenModal={onOpenModal}>
+                                    <Editor setState={setDescription} initialValue={currentContent} plugins={['code']} onOpenModal={onOpenModal}/>
+                                </Modal>
+                            )}
+                            <div dangerouslySetInnerHTML={{__html:description}}/>
 
 
-             <div className='flex flex-col '>
-              <div dangerouslySetInnerHTML={{__html:page.button}}/>
+                            <div className='flex flex-col '>
+                                <div dangerouslySetInnerHTML={{__html: titleButton}}/>
 
-              {/*<button className={`${style.button} w-[350px] h-[62px] mt-10  font-bold uppercase flex items-center justify-center gap-3`}*/}
-              {/*        type='button'*/}
-              {/*>*/}
-              {/* {titleButton}*/}
-              {/*</button>*/}
-              <Popover>
-               <PopoverTrigger asChild>
-                <Button className='w-[150px] mt-2 ml-[100px]'
-                        variant='outline'
-                >Редактировать</Button>
-               </PopoverTrigger>
-               <PopoverContent>
-                <div className="">
-                 <Label htmlFor="maxWidth">Max. width</Label>
-                 <Textarea value={titleButton}
-                           onChange={(e) => setTitleButton(e.target.value)}
-                 />
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <Button className='w-[150px] mt-2 ml-[100px]'
+                                                variant='outline'
+                                        >Редактировать</Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent>
+                                        <div className="">
+                                            <Label htmlFor="maxWidth">Max. width</Label>
+                                            <Textarea value={titleButton}
+                                                      onChange={(e) => setTitleButton(e.target.value)}
+                                            />
+                                        </div>
+                                    </PopoverContent>
+                                </Popover>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-               </PopoverContent>
-              </Popover>
-             </div>
-            </div>
-           </div>
-          </div>
-         </Container>
+            </Container>
         </>
     );
 };

@@ -81,7 +81,9 @@ const PagesList = ({}: Props) => {
 
                     <tbody>
                     {data?.items.map(item => (
-                       <PageItem key={item.id} item={item}/>
+                        <PageItem key={item.id}
+                                  item={item}
+                        />
                     ))}
 
                     </tbody>

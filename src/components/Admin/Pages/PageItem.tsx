@@ -2,6 +2,7 @@ import {MdOutlineDelete, MdOutlineModeEdit, MdOutlineRemoveRedEye} from "react-i
 import React, {useState} from "react";
 import Link from "next/link";
 
+
 interface PageItem {
     id: number,
     name: string,
