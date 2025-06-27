@@ -26,7 +26,6 @@ const Hero = ({page}: HeroProps) => {
     const [currentContent, setCurrentContent] = useState<string>('')
 
 
-
     const onOpenModal = () => {
         setOnModal(!onModal)
     }
@@ -37,7 +36,7 @@ const Hero = ({page}: HeroProps) => {
             <Container>
                 <div className='mt-10 '>
                     <div className='flex flex-col items-center'>
-                        <h1 className=''>Проверка таилвинд</h1>
+
                         <div dangerouslySetInnerHTML={{__html: title}}/>
                         <Button className='w-25'
                                 onClick={() => {
@@ -49,7 +48,11 @@ const Hero = ({page}: HeroProps) => {
 
                         {onModal && (
                             <Modal onOpenModal={onOpenModal}>
-                                <Editor setState={setTitle} initialValue={currentContent} plugins={['code']} onOpenModal={onOpenModal}/>
+                                <Editor setState={setTitle}
+                                        initialValue={currentContent}
+                                        plugins={['code']}
+                                        onOpenModal={onOpenModal}
+                                />
                             </Modal>
                         )}
                     </div>
@@ -61,8 +64,9 @@ const Hero = ({page}: HeroProps) => {
                             />
                         </div>
                         <div className='flex flex-col w-1/2'>
+
                             <Button className='w-25'
-                                    onClick={()=> {
+                                    onClick={() => {
                                         setCurrentContent(description);
                                         onOpenModal()
                                     }}
@@ -70,31 +74,60 @@ const Hero = ({page}: HeroProps) => {
                             >Редактировать</Button>
                             {onModal && (
                                 <Modal onOpenModal={onOpenModal}>
-                                    <Editor setState={setDescription} initialValue={currentContent} plugins={['code']} onOpenModal={onOpenModal}/>
+                                    <Editor setState={setDescription}
+                                            initialValue={currentContent}
+                                            plugins={['code']}
+                                            onOpenModal={onOpenModal}
+                                    />
                                 </Modal>
                             )}
-                            <div dangerouslySetInnerHTML={{__html:description}}/>
+                            <div dangerouslySetInnerHTML={{__html: description}}/>
 
 
-                            <div className='flex flex-col '>
+                            <div className='flex flex-col items-center'>
+                                {/*<Button className='w-[150px] mt-2 ml-[100px]'*/}
+                                {/*        variant='outline'*/}
+                                {/*>Редактировать</Button>*/}
+
                                 <div dangerouslySetInnerHTML={{__html: titleButton}}/>
+                                <Button className='w-25'
+                                        onClick={() => {
+                                            setCurrentContent(titleButton)
+                                            onOpenModal()
+                                        }}
+                                        variant='outline'
+                                >Редактировать</Button>
 
-                                <Popover>
-                                    <PopoverTrigger asChild>
-                                        <Button className='w-[150px] mt-2 ml-[100px]'
-                                                variant='outline'
-                                        >Редактировать</Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent>
-                                        <div className="">
-                                            <Label htmlFor="maxWidth">Max. width</Label>
-                                            <Textarea value={titleButton}
-                                                      onChange={(e) => setTitleButton(e.target.value)}
-                                            />
-                                        </div>
-                                    </PopoverContent>
-                                </Popover>
+                                {onModal && (
+                                    <Modal onOpenModal={onOpenModal}>
+                                        <Editor setState={setTitleButton}
+                                                initialValue={currentContent}
+                                                plugins={['code']}
+                                                onOpenModal={onOpenModal}
+                                        />
+                                    </Modal>
+                                )}
                             </div>
+
+                            {/*<div className='flex flex-col '>*/}
+                            {/*    <div dangerouslySetInnerHTML={{__html: titleButton}}/>*/}
+
+                            {/*    <Popover>*/}
+                            {/*        <PopoverTrigger asChild>*/}
+                            {/*            <Button className='w-[150px] mt-2 ml-[100px]'*/}
+                            {/*                    variant='outline'*/}
+                            {/*            >Редактировать</Button>*/}
+                            {/*        </PopoverTrigger>*/}
+                            {/*        <PopoverContent>*/}
+                            {/*            <div className="">*/}
+                            {/*                <Label htmlFor="maxWidth">Max. width</Label>*/}
+                            {/*                <Textarea value={titleButton}*/}
+                            {/*                          onChange={(e) => setTitleButton(e.target.value)}*/}
+                            {/*                />*/}
+                            {/*            </div>*/}
+                            {/*        </PopoverContent>*/}
+                            {/*    </Popover>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
