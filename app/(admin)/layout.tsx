@@ -1,11 +1,11 @@
 import React from "react";
 import "@/app/globals.css";
-import Header from "@/src/components/ui/Header/Header";
-import SidebarNav from "@/src/components/Admin/Sidebar/SidebarNav";
-import Logo from "@/src/components/ui/Header/Logo";
+import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
+import {AppSidebar} from "@/src/components/Admin/Sidebar/AppSidebar";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import QueryProvider from "@/providers/QueryProvider";
 
-
-
+const queryClient = new QueryClient()
 
 export default function AdminLayout({
                                         children,
@@ -13,21 +13,24 @@ export default function AdminLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru">
+
+        <html lang='en'>
         <body>
-        <Header>
-            <Logo/>
-        </Header>
+        <main>
 
-        <main className='flex '>
 
-            <SidebarNav/>
-                <div className='w-full'>
+            <SidebarProvider>
+                <QueryProvider>
+                    <AppSidebar/>
+                    <SidebarTrigger/>
                     {children}
-                </div>
+
+                </QueryProvider>
+
+            </SidebarProvider>
+
         </main>
         </body>
-
         </html>
     );
 }
